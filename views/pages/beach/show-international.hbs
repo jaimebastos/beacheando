@@ -1,11 +1,16 @@
 <div class="container">
     <h1>Playas internacionales</h1>
-    <ul>
+    <a class="btn btn-dark" href="/beach/crear">Crear playa</a>
+
+    <div class="row">
         {{#each allInternationalBeaches}}
-        <li>{{image}}</li>
-        <li>{{name}}</li>
-        <li>{{city}}, {{country}}</li>
-        <li>{{caption}}</li>
+        <div class="col-md-4">
+            <figure>{{image}}</figure>
+            <h3>{{name}}</h3>
+            <p>{{city}}, {{country}}</p>
+            <p> {{caption}} </p>
+            <a class="btn btn-dark" href="#">+ info</a>
+        </div>
         {{/each}}
-    </ul>
+    </div>
 </div>
