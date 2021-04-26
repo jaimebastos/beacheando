@@ -17,7 +17,6 @@ router.get('/registro', (req, res) => res.render('pages/auth/signup-form'))
 router.post('/registro', (req, res, next) => {
 
     const { name, email, username, password } = req.body
-    console.log('HOLAAAAAAa', password)
 
     User
         .findOne({ username })
@@ -51,7 +50,6 @@ router.get('/inicio-sesion', (req, res) => res.render('pages/auth/login-form'))
 router.post('/inicio-sesion', (req, res) => {
 
     const { username, password } = req.body
-    console.log('HOLAAAAAAa', password)
 
     User
         .findOne({ username })

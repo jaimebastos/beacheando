@@ -1,17 +1,15 @@
 <div class="container">
-    <h1>Playas nacionales</h1>
-    <a class="btn btn-dark" href="/beach/nacional">Crear playa</a>
-    <ul>
+    <h1>Playas Nacionales</h1>
+    <a class="btn btn-dark" href="/beach/crear">Crear playa</a>
+    <div class="row">
         {{#each allNationalBeaches}}
-        <li>{{image}}</li>
-        <li>{{name}}</li>
-        <li>{{city}}, {{country}}</li>
-        <li>{{caption}}</li>
-        |<a href="/beach/editar?beach_id={{id}}">Edit</a>
-        | <a href="/beach/delete/{{id}}" style="color: red">Delete</a>
+        <div class="col-md-4">
+            <figure>{{image}}</figure>
+            <h3>{{name}}</h3>
+            <p>{{city}}, {{country}}</p>
+            <p> {{caption}} </p>
+            <a class="btn btn-dark" href="#">+ info</a>
+        </div>
         {{/each}}
-    </ul>
-
-    <a href="/" class="btn btn-dark">Volver</a>
-
+    </div>
 </div>
