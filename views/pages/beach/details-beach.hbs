@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            {{#each selectedBeach}}
+            <figure>{{image}}</figure>
+            <h3>{{name}}</h3>
+            <p>{{caption}}</p>
+            <p> {{city}} {{country}} </p>
+            <p>{{description}}</p>
+            <div>
+                <p>{{comments}}</p>
+            </div>
+
+        </div>
+        {{/each}}
+        <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
+    </div>
+</div>

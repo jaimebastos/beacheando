@@ -27,6 +27,19 @@ router.get('/internacional', (req, res) => {
 
 })
 
+// Beach info
+router.get('/info/:id', (req, res) => {
+
+    const { id } = req.params
+
+    Beach
+        .findById(id)
+        .then(selectedBeach => res.render('pages/beach/details-beach', { selectedBeach }))
+        .catch(err => console.log('Error!', err))
+
+
+})
+
 // Beach form (get)
 router.get('/crear', (req, res) => res.render('pages/beach/create-beach'))
 
@@ -46,15 +59,13 @@ router.post('/crear', (req, res) => {
     Beach
         .create({ name, description, city, country, caption, image, location })
         .then((createdBeach) => res.redirect('/'))
-        .catch(err => console.log('Error!', err))
-
-    // .catch(err => {
-    //     if (err instanceof mongoose.Error.ValidationError) {
-    //         res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
-    //     } else {
-    //         next()
-    //     }
-    // })
+        .catch(err => {
+            if (err instanceof mongoose.Error.ValidationError) {
+                res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
+            } else {
+                next()
+            }
+        })
 })
 
 
@@ -76,7 +87,7 @@ router.get('/editar', (req, res) => {
 router.post('/editar', (req, res) => {
 
     const { beach_id } = req.query
-    const { name, description, city, country, caption, image, latitude, longitude } = req.body  
+    const { name, description, city, country, caption, image, latitude, longitude } = req.body
 
     const location = {
         type: 'Point',
@@ -85,7 +96,7 @@ router.post('/editar', (req, res) => {
 
     Beach
 
-        .findByIdAndUpdate(beach_id , {name, description, city, country, caption, image, location }) 
+        .findByIdAndUpdate(beach_id, { name, description, city, country, caption, image, location })
         .then(beachInfo => res.redirect('/beach/nacional'))
         .catch(err => console.log('Error!', err))
 })
