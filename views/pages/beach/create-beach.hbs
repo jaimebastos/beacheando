@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Crea una nueva playa</h1>
+            <hr>
+
+            <form class="row g-3" action="beach/crear" method="POST">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="city" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="city">
+                </div>
+                <div class="col-md-6">
+                    <label for="country" class="form-label">País</label>
+                    <input type="text" class="form-control" id="country">
+                </div>
+                <div class="col-md-6">
+                    <label for="caption" class="form-label">Breve descripción</label>
+                    <input type="text" class="form-control" id="caption">
+                </div>
+                <div class="col-md-6">
+                    <label for="image" class="form-label">Imágen</label>
+                    <input type="text" class="form-control" id="image">
+                </div>
+                <div class="col-md-6">
+                    <label for="description" class="form-label">Latitud</label>
+                    <input type="text" class="form-control" id="description">
+                </div>
+                <div class="col-md-6">
+                    <label for="description" class="form-label">Longitud</label>
+                    <input type="text" class="form-control" id="description">
+                </div>
+
+                <div class="col-md-12">
+                    <label for="description" class="form-label">Descripción</label>
+                    <textarea name="text" id="description" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-dark btn btn-block">Registrate</button>
+                </div>
+                {{#if errorMessage}}
+                <div id="error">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

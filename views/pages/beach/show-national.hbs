@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Playas nacionales</h1>
+    <a class="btn btn-dark" href="/beach/nacional">Crear playa</a>
+    <ul>
+        {{#each allNationalBeaches}}
+        <li>{{image}}</li>
+        <li>{{name}}</li>
+        <li>{{city}}, {{country}}</li>
+        <li>{{caption}}</li>
+        {{/each}}
+    </ul>
+</div>

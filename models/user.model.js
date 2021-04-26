@@ -8,7 +8,8 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
-        required: [true, 'El nombre de usuario es obligatorio']
+        required: [true, 'El nombre de usuario es obligatorio'],
+        unique: true
     },
     password: {
         type: String,
@@ -18,19 +19,21 @@ const userSchema = new Schema({
         type: String,
         enum: ['USER', 'ADMIN'],
         default: 'USER'
-    }, 
-     email: {
+    },
+    email: {
         type: String,
         required: [true, 'El email es obligatorio']
     },
-    favorits: {
-        type: String,
-    },
+    favorites: {
+        type: Schema.Types.ObjectId,
+        ref: 'Beach'
+    }
+
 }, {
     timestamps: true
 });
 
 
-const User = mongoose.model('Usser', userSchema)
+const User = mongoose.model('User', userSchema)
 
 module.exports = User
