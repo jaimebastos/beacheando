@@ -83,5 +83,18 @@ router.post('/editar', (req, res) => {
         .catch(err => console.log('Error!', err))
 })
 
+// Eliminar beach
+
+
+router.get('/delete/:id', (req, res) => { 
+
+    const beach_id  = req.params.id
+
+    Beach
+
+        .findByIdAndRemove(beach_id)
+        .then(() => res.redirect('/beach/nacional'))
+        .catch(err => console.log('Error!', err))
+})
 
 module.exports = router
