@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-12">
             {{#each selectedBeach}}
-            <figure>{{image}}</figure>
+            <img class="info-img" src="{{image}}" alt="{{name}}">
             <h3>{{name}}</h3>
             <p>{{caption}}</p>
             <p> {{city}} {{country}} </p>
@@ -10,9 +10,9 @@
             <div>
                 <p>{{comments}}</p>
             </div>
-
         </div>
-        {{/each}}
-        <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
     </div>
+    {{/each}}
+
+    <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
 </div>

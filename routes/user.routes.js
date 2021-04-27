@@ -74,17 +74,17 @@ router.post('/inicio-sesion', (req, res) => {
 
 
 router.get('/cerrar-sesion', (req, res) => {
-    req.session.destroy((err) => res.redirect("/inicio-sesion"));
+    req.session.destroy((err) => res.redirect("/user/inicio-sesion"));
 })
 
 
 // DETECTOR SESION
 router.use((req, res, next) => req.session.currentUser ? next() : res.redirect('/inicio-sesion'))
 
-// // PRIVATE ROUTES
-// router.get('/admin', (req, res) => {
-//     res.render('pages/admin', req.session.currentUser)
-// })
+// PRIVATE ROUTES
+router.get('/admin', (req, res) => {
+    res.render('pages/admin', req.session.currentUser)
+})
 
 
 

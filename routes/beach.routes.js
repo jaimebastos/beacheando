@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Beach = require('./../models/beach.model')
 const mongoose = require('mongoose')
+const { isLoggedIn, checkRoles } = require('./../middlewares')
+const { isAdmin } = require('./../utils')
+
 
 
 // National list
@@ -41,10 +44,10 @@ router.get('/info/:id', (req, res) => {
 })
 
 // Beach form (get)
-router.get('/crear', (req, res) => res.render('pages/beach/create-beach'))
+router.get('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => res.render('pages/beach/create-beach'))
 
 // Beach form (post)
-router.post('/crear', (req, res) => {
+router.post('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     let { name, description, city, country, caption, image, latitude, longitude } = req.body
 
@@ -69,9 +72,9 @@ router.post('/crear', (req, res) => {
 })
 
 
-// Beach edit (get)
+// Beach edit (get) ACTUALIZAR ROLES CON CODIGO DE JAIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-router.get('/editar', (req, res) => {
+router.get('/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     const { beach_id } = req.query
 
@@ -84,7 +87,7 @@ router.get('/editar', (req, res) => {
 
 // Beach edit (post)
 
-router.post('/editar', (req, res) => {
+router.post('/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     const { beach_id } = req.query
     const { name, description, city, country, caption, image, latitude, longitude } = req.body
@@ -104,9 +107,9 @@ router.post('/editar', (req, res) => {
 // Eliminar beach
 
 
-router.get('/delete/:id', (req, res) => { 
+router.get('/delete/:id', (req, res) => {
 
-    const beach_id  = req.params.id
+    const beach_id = req.params.id
 
     Beach
 
