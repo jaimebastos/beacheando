@@ -37,7 +37,9 @@ router.get('/info/:id', (req, res) => {
 
     Beach
         .findById(id)
-        .then(selectedBeach => res.render('pages/beach/details-beach', { selectedBeach }))
+        .then(selectedBeach => {
+            console.log("-----------------------------", selectedBeach, "------------------------------------")
+            res.render('pages/beach/details-beach', { selectedBeach })})
         .catch(err => console.log('Error!', err))
 
 
@@ -72,7 +74,7 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 })
 
 
-// Beach edit (get) ACTUALIZAR ROLES CON CODIGO DE JAIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Beach edit (get) 
 
 router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 

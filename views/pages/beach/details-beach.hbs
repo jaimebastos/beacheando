@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            {{#each selectedBeach}}
+            {{#with selectedBeach}}
             <img class="info-img" src="{{image}}" alt="{{name}}">
             <h3>{{name}}</h3>
             <p>{{caption}}</p>
@@ -10,9 +10,23 @@
             <div>
                 <p>{{comments}}</p>
             </div>
+            <input id="id" hidden value={{id}}>
+
+            <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
+            |<a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
+
+            {{/with}}
         </div>
     </div>
-    {{/each}}
 
-    <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
+    <figure id="placesMap"></figure>
+
+    
+    
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/mapstyles.js"></script>
+<script src="/js/directions.js"></script>
+<script src="/js/map-beaches-app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUayJrMq-hUKKbqkfcWM9ycKRhWBHXerc&callback=initMap"></script>
