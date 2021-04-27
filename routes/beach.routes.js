@@ -4,7 +4,8 @@ const Beach = require('./../models/beach.model')
 const mongoose = require('mongoose')
 const { isLoggedIn, checkRoles } = require('./../middlewares')
 const { isAdmin } = require('./../utils')
-
+const { CDNupload } = require('./../config/file-upload.config')
+const weather = require('openweather-apis');
 
 
 // National list
@@ -12,7 +13,7 @@ router.get('/nacional', (req, res) => {
 
     Beach
         .find({ country: 'España' })
-        .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches }))
+        .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin() }))
         .catch(err => console.log('Error!', err))
 
 
@@ -21,9 +22,10 @@ router.get('/nacional', (req, res) => {
 // International list
 router.get('/internacional', (req, res) => {
 
+
     Beach
         .find({ country: { $ne: 'España' } })
-        .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches }))
+        .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches, isAdmin: isAdmin() }))
         .catch(err => console.log('Error!', err))
 
 
@@ -35,9 +37,36 @@ router.get('/info/:id', (req, res) => {
 
     const { id } = req.params
 
+
+    weather.setLang('sp');
+    weather.setUnits('metric');
+    // check http://openweathermap.org/appid#get for get the APPID
+    weather.setAPPID("f11a4305732ef7912915f09e088cdbfd")
+
+
     Beach
         .findById(id)
-        .then(selectedBeach => res.render('pages/beach/details-beach', { selectedBeach }))
+        .then(selectedBeach => {
+
+            //coordenadas de selectedBeach VS como espera las coords setCoordinate()
+            let { latitude, longitude } = req.body
+            console.log('-------------------------', req.body)
+
+            const location = {
+                type: 'Point',
+                coordinates: [latitude, longitude]
+            }
+
+            weather.setCoordinate(location);
+            weather.getTemperature(function (err, temp) { //.then()
+                console.log(temp);
+                res.render('pages/beach/details-beach', { selectedBeach })
+            })
+
+
+
+
+        })
         .catch(err => console.log('Error!', err))
 
 
@@ -47,10 +76,9 @@ router.get('/info/:id', (req, res) => {
 router.get('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => res.render('pages/beach/create-beach'))
 
 // Beach form (post)
-router.post('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
-
+router.post('/crear', CDNupload.single('image'), isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+    const { path } = req.file
     let { name, description, city, country, caption, image, latitude, longitude } = req.body
-
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
@@ -60,7 +88,7 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
     // // country = capitalizeText(country)
 
     Beach
-        .create({ name, description, city, country, caption, image, location })
+        .create({ name, description, city, country, caption, image: path, location })
         .then((createdBeach) => res.redirect('/'))
         .catch(err => {
             if (err instanceof mongoose.Error.ValidationError) {
@@ -90,7 +118,7 @@ router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     const { id } = req.params
-    const { name, description, city, country, caption, image, latitude, longitude } = req.body  
+    const { name, description, city, country, caption, image, latitude, longitude } = req.body
 
     const location = {
         type: 'Point',
@@ -99,7 +127,7 @@ router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     Beach
 
-        .findByIdAndUpdate(id , {name, description, city, country, caption, image, location }) 
+        .findByIdAndUpdate(id, { name, description, city, country, caption, image, location })
         .then(beachInfo => res.redirect('/beach/nacional'))
         .catch(err => console.log('Error!', err))
 })

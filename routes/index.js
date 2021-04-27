@@ -5,6 +5,4 @@ module.exports = app => {
     app.use('/beach', require('./beach.routes.js'))
     app.use('/user', require('./user.routes.js'))
     app.use('/admin', require('./admin.routes.js'))
-
-
 }

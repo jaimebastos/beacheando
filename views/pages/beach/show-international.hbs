@@ -1,10 +1,10 @@
 <div class="container">
     <h1>Playas internacionales</h1>
 
-
-    {{#if ../isAdmin}}
+    {{#if isAdmin}}
     <a class="btn btn-dark" href="/beach/crear">Crear playa</a>
     {{/if}}
+
 
     <div class="row">
         {{#each allInternationalBeaches}}
@@ -13,7 +13,7 @@
             <h3>{{name}}</h3>
             <p>{{city}}, {{country}}</p>
             <p> {{caption}} </p>
-            <a class="btn btn-dark" href="/beach/info/{{id}}">+ info</a>
+            <a class="btn btn-outline-info" href="/beach/info/{{id}}">+ info</a>
         </div>
         {{/each}}
     </div>

@@ -8,7 +8,7 @@
             <h1>Beachea una nueva playa</h1>
             <hr>
 
-            <form class="row g-3" action="/beach/crear" method="POST">
+            <form class="row g-3" action="/beach/crear" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -26,10 +26,7 @@
                     <label for="caption" class="form-label">Breve descripción</label>
                     <input type="text" class="form-control" id="caption" name="caption">
                 </div>
-                <div class="col-md-12">
-                    <label for="image" class="form-label">Imágen</label>
-                    <input type="text" class="form-control" id="image" name="image">
-                </div>
+
                 <div class="col-md-6">
                     <label for="latitude" class="form-label">Latitud</label>
                     <input type="text" class="form-control" id="latitude" name="latitude">
@@ -38,11 +35,14 @@
                     <label for="longitude" class="form-label">Longitud</label>
                     <input type="text" class="form-control" id="longitude" name="longitude">
                 </div>
-
                 <div class="col-md-12">
                     <label for="description" class="form-label">Descripción</label>
-                    <textarea name="text" id="description" cols="30" rows="5" class="form-control"
-                        name="description"></textarea>
+                    <input type="text" class="form-control" id="description" name="description">
+                </div>
+
+                <div class="col-md-12">
+                    <label for="image">Imagen</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-dark btn btn-block btn-create">Beachear</button>

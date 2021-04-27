@@ -2,6 +2,9 @@
     <h1>Playas Nacionales</h1>
 
 
+    <a class="btn btn-outline-info" href="/beach/crear">Crear playa</a>
+
+
     <div class="row">
         {{#each allNationalBeaches}}
         <div class="col-md-4">
@@ -12,10 +15,10 @@
             <a class="btn btn-dark" href="#">+ info</a>
             | <a class="btn btn-dark" href="/beach/editar/{{id}}">Edit</a>
             | <a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Delete</a>
-            <a class="btn btn-dark" href="/beach/info/{{id}}">+ info</a>
+            <a class="btn btn-outline-info" href="/beach/info/{{id}}">+ info</a>
         </div>
         {{/each}}
     </div>
-    <a class="btn btn-dark" href="/beach/crear">Crear playa</a>
+
 
 </div>

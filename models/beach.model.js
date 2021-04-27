@@ -19,9 +19,7 @@ const beachSchema = new Schema({
         type: String,
     },
     image: {
-
         type: String,
-
     },
     location: {
         type: {

@@ -1,0 +1,28 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Sube tu imagen (CDN)</h1>
+
+            <hr>
+
+            <form action="/imagenes/cdn" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="image">Imagen</label>
+                    <input type="file" class="form-control-file" id="image" name="userImage">
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Descripción</label>
+                    <input type="text" class="form-control" id="desc" name="description">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Subir a Cloudinary</button>
+            </form>
+        </div>
+    </div>
+
+</div>
