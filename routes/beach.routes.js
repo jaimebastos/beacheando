@@ -27,6 +27,19 @@ router.get('/internacional', (req, res) => {
 
 })
 
+// Beach info
+router.get('/info/:id', (req, res) => {
+
+    const { id } = req.params
+
+    Beach
+        .findById(id)
+        .then(selectedBeach => res.render('pages/beach/details-beach', { selectedBeach }))
+        .catch(err => console.log('Error!', err))
+
+
+})
+
 // Beach form (get)
 router.get('/crear', (req, res) => res.render('pages/beach/create-beach'))
 
@@ -46,15 +59,13 @@ router.post('/crear', (req, res) => {
     Beach
         .create({ name, description, city, country, caption, image, location })
         .then((createdBeach) => res.redirect('/'))
-        .catch(err => console.log('Error!', err))
-
-    // .catch(err => {
-    //     if (err instanceof mongoose.Error.ValidationError) {
-    //         res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
-    //     } else {
-    //         next()
-    //     }
-    // })
+        .catch(err => {
+            if (err instanceof mongoose.Error.ValidationError) {
+                res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
+            } else {
+                next()
+            }
+        })
 })
 
 
