@@ -9,6 +9,9 @@
             <h3>{{name}}</h3>
             <p>{{city}}, {{country}}</p>
             <p> {{caption}} </p>
+            <a class="btn btn-dark" href="#">+ info</a>
+            | <a class="btn btn-dark" href="/beach/editar/{{id}}">Edit</a>
+            | <a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Delete</a>
             <a class="btn btn-dark" href="/beach/info/{{id}}">+ info</a>
         </div>
         {{/each}}

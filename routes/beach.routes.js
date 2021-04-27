@@ -74,23 +74,23 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
 // Beach edit (get) ACTUALIZAR ROLES CON CODIGO DE JAIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-router.get('/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
-    const { beach_id } = req.query
+    const { id } = req.params
 
     Beach
 
-        .findById(beach_id)
+        .findById(id)
         .then(beachInfo => res.render('pages/beach/edit-beach', beachInfo))
         .catch(err => console.log('Error!', err))
 })
 
 // Beach edit (post)
 
-router.post('/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
-    const { beach_id } = req.query
-    const { name, description, city, country, caption, image, latitude, longitude } = req.body
+    const { id } = req.params
+    const { name, description, city, country, caption, image, latitude, longitude } = req.body  
 
     const location = {
         type: 'Point',
@@ -99,7 +99,7 @@ router.post('/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     Beach
 
-        .findByIdAndUpdate(beach_id, { name, description, city, country, caption, image, location })
+        .findByIdAndUpdate(id , {name, description, city, country, caption, image, location }) 
         .then(beachInfo => res.redirect('/beach/nacional'))
         .catch(err => console.log('Error!', err))
 })
