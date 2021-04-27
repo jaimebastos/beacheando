@@ -100,7 +100,7 @@ router.post('/crear', CDNupload.single('image'), isLoggedIn, checkRoles('ADMIN')
 })
 
 
-// Beach edit (get) ACTUALIZAR ROLES CON CODIGO DE JAIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Beach edit (get) 
 
 router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
