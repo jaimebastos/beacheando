@@ -6,7 +6,6 @@
         </section>
     </div>
 
-    
 
     <div class="row">
         <section>
@@ -20,6 +19,24 @@
 
         </section>
     </div>
+
+        <h1>Galeria de Imagenes</h1>
+        <hr>
+
+    <div class="row">
+            {{#each allImages}}
+        <section>
+
+            
+        
+            <img src="{{image}}" alt="{{name}}">
+
+            {{/each}}
+    
+        </section>
+    </div>
+
+
 
     <footer>
 
