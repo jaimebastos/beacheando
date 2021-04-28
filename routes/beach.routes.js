@@ -15,73 +15,59 @@ router.get('/nacional', (req, res) => {
         .find({ country: 'España' })
         .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin() }))
         .catch(err => console.log('Error!', err))
-
-
-
 })
+
+
 // International list
 router.get('/internacional', (req, res) => {
-
 
     Beach
         .find({ country: { $ne: 'España' } })
         .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches, isAdmin: isAdmin() }))
         .catch(err => console.log('Error!', err))
-
-
-
 })
+
 
 // Beach info
 router.get('/info/:id', (req, res) => {
 
     const { id } = req.params
 
-
     weather.setLang('sp');
     weather.setUnits('metric');
     // check http://openweathermap.org/appid#get for get the APPID
     weather.setAPPID("f11a4305732ef7912915f09e088cdbfd")
 
-
     Beach
         .findById(id)
         .then(selectedBeach => {
 
-            //coordenadas de selectedBeach VS como espera las coords setCoordinate()
-           
-
             const location = selectedBeach.location.coordinates
-            console.log(location)
-            weather.setCoordinate(location);
-            weather.getTemperature(function (err, temp) { //.then()
-                console.log(temp);
+            const lat = location[0]
+            const long = location[1]
+            console.log('------------------------', lat, long);
+            weather.setCoordinate(lat, long);
+            weather.getDescription(function (err, temp) { //.then()
                 res.render('pages/beach/details-beach', { selectedBeach })
             })
-
-
-
-
         })
         .catch(err => console.log('Error!', err))
-
-
 })
+
 
 // Beach form (get)
 router.get('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => res.render('pages/beach/create-beach'))
 
+
 // Beach form (post)
-router.post('/crear', CDNupload.single('image'), isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image'), (req, res) => {
+
     const { path } = req.file
     let { name, description, city, country, caption, image, latitude, longitude } = req.body
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
-
-    // // title = capitalizeText(title)
-    // // country = capitalizeText(country)
 
     Beach
         .create({ name, description, city, country, caption, image: path, location })
@@ -97,7 +83,6 @@ router.post('/crear', CDNupload.single('image'), isLoggedIn, checkRoles('ADMIN')
 
 
 // Beach edit (get) 
-
 router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     const { id } = req.params
@@ -109,8 +94,8 @@ router.get('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
         .catch(err => console.log('Error!', err))
 })
 
-// Beach edit (post)
 
+// Beach edit (post)
 router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
     const { id } = req.params
@@ -124,19 +109,17 @@ router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
     Beach
 
         .findByIdAndUpdate(id, { name, description, city, country, caption, image, location })
-        .then(beachInfo => res.redirect('/beach'))
+        .then(beachInfo => res.redirect('/'))
         .catch(err => console.log('Error!', err))
 })
 
+
 // Eliminar beach
-
-
 router.get('/delete/:id', (req, res) => {
 
     const beach_id = req.params.id
 
     Beach
-
         .findByIdAndRemove(beach_id)
         .then(() => res.redirect('/beach/nacional'))
         .catch(err => console.log('Error!', err))
