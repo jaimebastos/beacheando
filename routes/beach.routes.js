@@ -49,14 +49,10 @@ router.get('/info/:id', (req, res) => {
         .then(selectedBeach => {
 
             //coordenadas de selectedBeach VS como espera las coords setCoordinate()
-            let { latitude, longitude } = req.body
-            console.log('-------------------------', { latitude, longitude })
+           
 
-            const location = {
-                type: 'Point',
-                coordinates: [latitude, longitude]
-            }
-
+            const location = selectedBeach.location.coordinates
+            console.log(location)
             weather.setCoordinate(location);
             weather.getTemperature(function (err, temp) { //.then()
                 console.log(temp);
