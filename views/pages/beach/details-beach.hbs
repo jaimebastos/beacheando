@@ -5,7 +5,7 @@
             <img class="info-img" src="{{image}}" alt="{{name}}">
             <h3>{{name}}</h3>
             <p>{{caption}}</p>
-            <p> {{city}} {{country}} </p>
+            <p><img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}} {{country}} </p>
             <p>{{description}}</p>
             <div>
                 <p>{{comments}}</p>
@@ -13,10 +13,11 @@
             <input id="id" hidden value={{id}}>
             <input name="longitude" hidden value={{longitude}}>
             <input name="latitude" hidden value={{latitude}}>
-
-            <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
-            |<a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
-        
+           
+            <a class="btn btn-outline-info" href="/beach/editar/{{id}}">Editar playa</a>
+            <a class="btn btn-outline-info" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
+            {{#if isAdmin}}
+            {{/if}}
             {{/with}}
         </div>
         <input id="id" hidden value={{id}}>
