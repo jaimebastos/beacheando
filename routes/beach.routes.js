@@ -11,6 +11,7 @@ const weather = require('openweather-apis');
 // National list
 router.get('/nacional', (req, res) => {
 
+
     Beach
         .find({ country: 'España' })
         .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin() }))
@@ -65,7 +66,7 @@ router.get('/crear', isLoggedIn, checkRoles('ADMIN'), (req, res) => res.render('
 router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image'), (req, res) => {
 
     const { path } = req.file
-    let { name, description, city, country, caption, image, latitude, longitude } = req.body
+    let { name, description, city, country, caption, latitude, longitude } = req.body
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]

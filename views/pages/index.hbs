@@ -3,19 +3,35 @@
     <h1 class="title">Beacheando</h1>
 </div>
 
-<div>
-    <section>
+    <div class="row">  
+        <section>
+            <div class="col-lg-12">
+                <h1>Beacheando</h1>
+                <hr>
+            </div>
+        </section>
+    </div>
 
-        <div class="col-md-8">
+    <div class="row images-gallery">
+        <section>
+            <h1>Galeria de Imagenes</h1>
+            <hr>
+                {{#each allImages}}
+                    <div class="col-md-4">
+                        <figure>
+                            <img src="{{image}}" alt="{{name}}">                           
+                        </figure>
+                    </div>
+                {{/each}}
+        </section>
+    </div>
 
-        </div>
-        <div class="col-md-4">
 
-        </div>
+        
 
-    </section>
+
+    <footer>
+
+    </footer>
+
 </div>
-
-<footer>
-
-</footer>

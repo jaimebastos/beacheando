@@ -15,5 +15,4 @@ const CDNupload = multer({ storage })
 
 
 
-// Object export with both setups
 module.exports = { CDNupload }
