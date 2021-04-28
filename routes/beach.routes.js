@@ -46,9 +46,11 @@ router.get('/info/:id', (req, res) => {
             const lat = location[0]
             const long = location[1]
             console.log('------------------------', lat, long);
+
             weather.setCoordinate(lat, long);
-            weather.getDescription(function (err, temp) { //.then()
-                res.render('pages/beach/details-beach', { selectedBeach })
+            weather.getDescription(function (err, weather) { //.then()
+                console.log(weather)
+                res.render('pages/beach/details-beach', { selectedBeach, weather })
             })
         })
         .catch(err => console.log('Error!', err))
