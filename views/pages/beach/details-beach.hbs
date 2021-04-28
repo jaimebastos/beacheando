@@ -11,11 +11,13 @@
                 <p>{{comments}}</p>
             </div>
             <input id="id" hidden value={{id}}>
+            <input id="longitude" hidden value={{longitude}}>
+            <input id="latitude" hidden value={{latitude}}>
 
             <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
             |<a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
 
-            <input id="id" hidden value={{id}}>
+
             {{/with}}
         </div>
     </div>
