@@ -1,10 +1,26 @@
 <div class="container">
     <div class="row">
+        <div class="row weather">
+            {{#with weather}}
+            {{#each weather}}
+            <div>
+                <figure>
+                    <img src="http://openweathermap.org/img/wn/{{icon}}.png" alt="">
+                </figure>
+            </div>
+            <div>
+                <figure>{{description}}</figure>
+            </div>
+            <div>
+                {{/each}}
+                <p>{{main.temp}}º</p>
+                {{/with}}
+            </div>
+        </div>
         <div class="col-md-12">
             {{#with selectedBeach}}
             <img class="info-img" src="{{image}}" alt="{{name}}">
             <h3>{{name}}</h3>
-            <p>{{weather}}</p>
             <p>{{caption}}</p>
             <p> {{city}} {{country}} </p>
             <p>{{description}}</p>
@@ -16,8 +32,8 @@
             <input name="latitude" hidden value={{latitude}}>
 
             <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
-            |<a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
-        
+            <a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
+
             {{/with}}
         </div>
         <input id="id" hidden value={{id}}>
@@ -33,4 +49,5 @@
 <script src="/js/mapstyles.js"></script>
 <script src="/js/directions.js"></script>
 <script src="/js/map-beaches-app.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUayJrMq-hUKKbqkfcWM9ycKRhWBHXerc&callback=initMap"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUayJrMq-hUKKbqkfcWM9ycKRhWBHXerc&callback=initMap"></script>
