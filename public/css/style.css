@@ -31,7 +31,9 @@ body {
 #placesMap {
   background-color: red;
   height: 60vh;
-  margin: 0; 
-}
+  margin: 0; }
+
+.images-gallery img {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
