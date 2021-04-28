@@ -49,14 +49,10 @@ router.get('/info/:id', (req, res) => {
         .then(selectedBeach => {
 
             //coordenadas de selectedBeach VS como espera las coords setCoordinate()
-            let { latitude, longitude } = req.body
-            console.log('-------------------------', req.body)
+           
 
-            const location = {
-                type: 'Point',
-                coordinates: [latitude, longitude]
-            }
-
+            const location = selectedBeach.location.coordinates
+            console.log(location)
             weather.setCoordinate(location);
             weather.getTemperature(function (err, temp) { //.then()
                 console.log(temp);
@@ -128,7 +124,7 @@ router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
     Beach
 
         .findByIdAndUpdate(id, { name, description, city, country, caption, image, location })
-        .then(beachInfo => res.redirect('/beach/nacional'))
+        .then(beachInfo => res.redirect('/beach'))
         .catch(err => console.log('Error!', err))
 })
 
