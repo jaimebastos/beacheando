@@ -14,7 +14,7 @@ router.get('/nacional', (req, res) => {
 
     Beach
         .find({ country: 'España' })
-        .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin() }))
+        .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin(req.session.currentUser) }))
         .catch(err => console.log('Error!', err))
 })
 
@@ -24,7 +24,7 @@ router.get('/internacional', (req, res) => {
 
     Beach
         .find({ country: { $ne: 'España' } })
-        .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches, isAdmin: isAdmin() }))
+        .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches, isAdmin: isAdmin(req.session.currentUser) }))
         .catch(err => console.log('Error!', err))
 })
 
@@ -42,7 +42,6 @@ router.get('/info/:id', (req, res) => {
     Beach
         .findById(id)
         .then(selectedBeach => {
-
             const location = selectedBeach.location.coordinates
             const lat = location[0]
             const long = location[1]

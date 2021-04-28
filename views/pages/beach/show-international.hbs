@@ -1,14 +1,16 @@
 <div class="container">
     <h1>Playas internacionales</h1>
 
+    {{#if isAdmin}}
     <a class="btn btn-dark" href="/beach/crear">Crear playa</a>
+    {{/if}}
 
     <div class="row">
         {{#each allInternationalBeaches}}
         <div class="col-md-4">
             <img class="detail-img" src="{{image}}" alt="{{name}}">
             <h3>{{name}}</h3>
-            <p>{{city}}, {{country}}</p>
+            <p><img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}}, {{country}}</p>
             <p> {{caption}} </p>
             <a class="btn btn-outline-info" href="/beach/info/{{id}}">+ info</a>
         </div>
