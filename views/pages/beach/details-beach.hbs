@@ -15,7 +15,6 @@
             <a class="btn btn-dark" href="/beach/editar/{{id}}">Editar playa</a>
             |<a class="btn btn-dark" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
 
-            {{/with}}
         </div>
         <input id="id" hidden value={{id}}>
         {{/with}}
@@ -23,12 +22,13 @@
 
     <figure id="placesMap"></figure>
 
-    
-    
+
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/mapstyles.js"></script>
 <script src="/js/directions.js"></script>
 <script src="/js/map-beaches-app.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUayJrMq-hUKKbqkfcWM9ycKRhWBHXerc&callback=initMap"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUayJrMq-hUKKbqkfcWM9ycKRhWBHXerc&callback=initMap"></script>
