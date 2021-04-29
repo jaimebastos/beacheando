@@ -5,10 +5,7 @@ const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
 const mongoose = require('mongoose')
-
 const User = require('./../models/user.model')
-
-
 
 // Signup form (get)
 router.get('/registro', (req, res) => res.render('pages/auth/signup-form'))
@@ -77,7 +74,6 @@ router.get('/cerrar-sesion', (req, res) => {
     req.session.destroy((err) => res.redirect("/user/inicio-sesion"));
 })
 
-
 // DETECTOR SESION
 router.use((req, res, next) => req.session.currentUser ? next() : res.redirect('/inicio-sesion'))
 
@@ -85,7 +81,5 @@ router.use((req, res, next) => req.session.currentUser ? next() : res.redirect('
 router.get('/admin', (req, res) => {
     res.render('pages/admin', req.session.currentUser)
 })
-
-
 
 module.exports = router

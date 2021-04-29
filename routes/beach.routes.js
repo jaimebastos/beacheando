@@ -11,7 +11,6 @@ const weather = require('openweather-apis');
 // National list
 router.get('/nacional', isLoggedIn, (req, res) => {
 
-
     Beach
         .find({ country: 'España' })
         .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin(req.session.currentUser) }))
@@ -71,17 +70,23 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image')
         type: 'Point',
         coordinates: [latitude, longitude]
     }
+    console.log(name, description, city, country, caption, latitude, longitude )
+    console.log(location)
 
     Beach
         .create({ name, description, city, country, caption, image: path, location })
-        .then((createdBeach) => res.redirect('/info/{{id}}'))
-        .catch(err => {
-            if (err instanceof mongoose.Error.ValidationError) {
-                res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
-            } else {
-                next()
-            }
-        })
+        .then((createdBeach) => {
+            console.log(createdBeach)
+            res.redirect('/')})
+        .catch(err => console.log('-----------------', err))
+        //     {
+        //     if (err instanceof mongoose.Error.ValidationError) {
+        //         res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
+        //     } else {
+        //         next()
+        //     }
+        // }
+        // )
 })
 
 

@@ -61,16 +61,6 @@ h2 {
   margin-top: 7px;
   padding: 0; }
 
-<<<<<<< HEAD
-.beacheando-gallery img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  margin-top: 7px;
-  padding: 0; }
-
-=======
->>>>>>> 17dc8892aaddfa071a601fdcf01180e0d062751b
 .weather {
   margin-top: 10px;
   margin-left: auto; }
@@ -81,8 +71,6 @@ h2 {
 
 .chincheta {
   width: 25px; }
-<<<<<<< HEAD
-=======
 
 .logo-show {
   width: 17vw;
@@ -90,10 +78,10 @@ h2 {
   margin-top: 10px; }
 
 .sign {
-  height: 100px; }
+  height: 40px;
+  margin-top: 10px; }
 
 .main {
   margin: 0; }
->>>>>>> 17dc8892aaddfa071a601fdcf01180e0d062751b
 
 /*# sourceMappingURL=style.css.map */

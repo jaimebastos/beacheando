@@ -7,5 +7,4 @@ module.exports = app => {
     app.use('/admin', require('./admin.routes.js'))
     app.use('/api', require('./api.routes.js'))
 
-
 }
