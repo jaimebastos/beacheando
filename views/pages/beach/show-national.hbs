@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-md-4 "><img class="logo-show" src="/img/beach-logo.png" alt=""></div>
+        <div class="col-md-4 "><img class="logo-show" src="/img/beach-logo.png" alt="logo"></div>
     </div>
     <div class="row d-flex justify-content-center">
-        <h2>Playas Nacionales</h2>
+        <h4>Playas Nacionales</h2>
     </div>
 
     {{#if isAdmin}}
@@ -13,8 +13,9 @@
     <div class="row">
         {{#each allNationalBeaches}}
         <div class="col-md-4">
+            <hr>
             <img class="detail-img" src="{{image}}" alt="{{name}}">
-            <h3>{{name}}</h3>
+            <h5>{{name}}</h5>
             <p><img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}}, {{country}}</p>
             <p> {{caption}} </p>
             <a class="btn btn-outline-info" href="/beach/info/{{id}}">+ info</a>

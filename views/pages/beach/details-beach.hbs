@@ -3,26 +3,22 @@
         <div class="row weather">
             {{#with weather}}
             {{#each weather}}
-            <div>
-                <figure>
-                    <img src="http://openweathermap.org/img/wn/{{icon}}.png" alt="">
-                </figure>
-            </div>
-            <div>
+            <div class="weather-info">
                 <figure>{{description}}</figure>
             </div>
-            <div>
+            <div class="weather-info">
                 {{/each}}
                 <p>{{main.temp}}º</p>
                 {{/with}}
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col">
             {{#with selectedBeach}}
+            <h6><img class="palmera" src="/img/palmera.png" alt="palmera">{{name}}</h6>
             <img class="info-img" src="{{image}}" alt="{{name}}">
-            <h3>{{name}}</h3>
-            <p>{{caption}}</p>
-            <p><img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}} {{country}} </p>
+            <p class="caption"><img src="/img/dedo.png" class="dedo" alt="dedo">{{caption}}</p>
+            <p class="caption"> <img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}}, {{country}}
+            </p>
             <p>{{description}}</p>
             <div>
                 <p>{{comments}}</p>
@@ -30,20 +26,43 @@
             <input id="id" hidden value={{id}}>
             <input name="longitude" hidden value={{longitude}}>
             <input name="latitude" hidden value={{latitude}}>
-           
+            {{#if ../isAdmin}}
             <a class="btn btn-outline-info" href="/beach/editar/{{id}}">Editar playa</a>
             <a class="btn btn-outline-info" href="/beach/delete/{{id}}" style="color: red">Eliminar</a>
-            {{#if isAdmin}}
             {{/if}}
             {{/with}}
         </div>
-        <input id="id" hidden value={{id}}>
     </div>
+    <div class="row map-section">
+        <div class="col-md-8">
+            <figure id="placesMap"></figure>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                {{#each selectedBeach.comments}}
+                <ul>
+                    <li>{{name}}</li>
+                    <li>{{text}}</li>
+                </ul>
+                {{/each}}
+            </div>
 
-    <figure id="placesMap"></figure>
-
-
-
+            <divs>
+                <form action="/comments" method="POST">
+                    <div>
+                        <label for="name" class="form-label"></label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre">
+                    </div>
+                    <div>
+                        <label for="text" class="form-label"></label>
+                        <input type="text" class="form-control" id="text" name="text" placeholder="Tu comentario">
+                        <button class="btn btn-outline-info btn-block btn-comment" type="submit">Enviar
+                            comentario</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

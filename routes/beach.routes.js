@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Comment = require('./../models/comment.model')
 const Beach = require('./../models/beach.model')
 const mongoose = require('mongoose')
 const { isLoggedIn, checkRoles } = require('./../middlewares')
@@ -7,13 +8,12 @@ const { isAdmin } = require('./../utils')
 const { CDNupload } = require('./../config/file-upload.config')
 const weather = require('openweather-apis');
 
-
 // National list
 router.get('/nacional', isLoggedIn, (req, res) => {
 
-
     Beach
         .find({ country: 'España' })
+        .select("name caption city country image ")
         .then(allNationalBeaches => res.render('pages/beach/show-national', { allNationalBeaches, isAdmin: isAdmin(req.session.currentUser) }))
         .catch(err => console.log('Error!', err))
 })
@@ -24,6 +24,7 @@ router.get('/internacional', isLoggedIn, (req, res) => {
 
     Beach
         .find({ country: { $ne: 'España' } })
+        .select("name caption city country image ")
         .then(allInternationalBeaches => res.render('pages/beach/show-international', { allInternationalBeaches, isAdmin: isAdmin(req.session.currentUser) }))
         .catch(err => console.log('Error!', err))
 })
@@ -41,6 +42,7 @@ router.get('/info/:id', isLoggedIn, (req, res) => {
 
     Beach
         .findById(id)
+        .populate('comments')//
         .then(selectedBeach => {
             const location = selectedBeach.location.coordinates
             const lat = location[0]
@@ -51,7 +53,7 @@ router.get('/info/:id', isLoggedIn, (req, res) => {
 
             weather.getAllWeather(function (err, weather) {
                 console.log(weather)
-                res.render('pages/beach/details-beach', { selectedBeach, weather })
+                res.render('pages/beach/details-beach', { selectedBeach, weather, isAdmin: isAdmin(req.session.currentUser) })
             })
         })
         .catch(err => console.log('Error!', err))
@@ -71,17 +73,10 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image')
         type: 'Point',
         coordinates: [latitude, longitude]
     }
-
     Beach
         .create({ name, description, city, country, caption, image: path, location })
-        .then((createdBeach) => res.redirect('/info/{{id}}'))
-        .catch(err => {
-            if (err instanceof mongoose.Error.ValidationError) {
-                res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
-            } else {
-                next()
-            }
-        })
+        .then((createdBeach) => res.redirect('/'))
+        .catch(err => console.log('Error!', err))
 })
 
 
@@ -112,7 +107,7 @@ router.post('/editar/:id', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
     Beach
 
         .findByIdAndUpdate(id, { name, description, city, country, caption, image, location })
-        .then(beachInfo => res.redirect('/'))
+        .then(beachInfo => res.redirect(`/beach/info/${id}`))
         .catch(err => console.log('Error!', err))
 })
 
