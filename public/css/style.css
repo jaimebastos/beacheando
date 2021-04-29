@@ -48,15 +48,6 @@ body {
   font-size: 6em;
   color: #fff; }
 
-<<<<<<< HEAD
-.weather {
-  margin-top: 10px;
-  margin-left: auto; }
-
-.weather figure {
-  text-transform: capitalize;
-  padding-right: 5px; }
-=======
 .beacheando-gallery img {
   width: 100%;
   height: 200px;
@@ -64,8 +55,15 @@ body {
   margin-top: 7px;
   padding: 0; }
 
+.weather {
+  margin-top: 10px;
+  margin-left: auto; }
+
+.weather figure {
+  text-transform: capitalize;
+  padding-right: 5px; }
+
 .chincheta {
   width: 25px; }
->>>>>>> 601dea14139b6eed214b41221ebd0d83748910c0
 
 /*# sourceMappingURL=style.css.map */
