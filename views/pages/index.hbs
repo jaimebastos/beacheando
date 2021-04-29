@@ -1,27 +1,33 @@
-<div>
-    <img class="front-img" src="/img/portada.jpeg" alt="playa paradisíaca">
-    <h1 class="title">Beacheando</h1>
-</div>
-
-<h1>Galeria de imagenes</h1>
-<hr>
-
-<div class="beacheando-gallery">
-    <div class="glide__track" data-glide-el="track">
-        <ul class="glide__slides">
-            {{#each allImages}}
-            <figure class="glide__slide">
-                <img src="{{image}}" alt="{{name}}">
-            </figure>
-            {{/each}}
-        </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 front-page">
+            <img class="front-img" src="/img/portada.jpeg" alt="playa paradisíaca">
+            <h1 class="title">Beacheando</h1>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-around sign">
+            <a class="btn btn-outline-info" href="/user/inicio-sesion">Inicia sesión</a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-outline-info" href="#">Envíanos tu playa favorita</a>
+        </div>
+    </div>
+    <div class=" row beacheando-gallery">
+        <div class="col-md-12">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    {{#each allImages}}
+                    <figure class="glide__slide">
+                        <img src="{{image}}" alt="{{name}}">
+                    </figure>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<footer>
-</footer>
 
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-<script src="/js/slideshow.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script src="/js/slideshow.js"></script>

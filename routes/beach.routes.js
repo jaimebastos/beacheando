@@ -9,7 +9,7 @@ const weather = require('openweather-apis');
 
 
 // National list
-router.get('/nacional', (req, res) => {
+router.get('/nacional', isLoggedIn, (req, res) => {
 
 
     Beach
@@ -20,7 +20,7 @@ router.get('/nacional', (req, res) => {
 
 
 // International list
-router.get('/internacional', (req, res) => {
+router.get('/internacional', isLoggedIn, (req, res) => {
 
     Beach
         .find({ country: { $ne: 'España' } })
@@ -30,7 +30,7 @@ router.get('/internacional', (req, res) => {
 
 
 // Beach info
-router.get('/info/:id', (req, res) => {
+router.get('/info/:id', isLoggedIn, (req, res) => {
 
     const { id } = req.params
 
@@ -74,7 +74,7 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image')
 
     Beach
         .create({ name, description, city, country, caption, image: path, location })
-        .then((createdBeach) => res.redirect('/'))
+        .then((createdBeach) => res.redirect('/info/{{id}}'))
         .catch(err => {
             if (err instanceof mongoose.Error.ValidationError) {
                 res.render('pages/beach/create-beach', { errorMessage: formatValidationError(err) })
