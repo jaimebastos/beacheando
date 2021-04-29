@@ -1,15 +1,25 @@
 <div class="container">
+<<<<<<< HEAD
     <h2>Playas Internacionales</h2>
+=======
+    <div class="row d-flex justify-content-center">
+        <img class="logo-show" src="/img/beach-logo.png" alt="logo">
+    </div>
+    <div class="row d-flex justify-content-center">
+        <h4>Playas Internacionales</h2>
+    </div>
+>>>>>>> ca2435f22f639ea9888ddfbb0604b214a29cd815
 
     {{#if isAdmin}}
-    <a class="btn btn-outline-info" href="/beach/crear">Crear playa</a>
+    <a class=" btn btn-outline-info" href="/beach/crear">Crear playa</a>
     {{/if}}
 
     <div class="row">
         {{#each allInternationalBeaches}}
         <div class="col-md-4">
+            <hr>
             <img class="detail-img" src="{{image}}" alt="{{name}}">
-            <h3>{{name}}</h3>
+            <h5>{{name}}</h5>
             <p><img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}}, {{country}}</p>
             <p> {{caption}} </p>
             <a class="btn btn-outline-info" href="/beach/info/{{id}}">+ info</a>

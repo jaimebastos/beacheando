@@ -6,5 +6,6 @@ module.exports = app => {
     app.use('/user', require('./user.routes.js'))
     app.use('/admin', require('./admin.routes.js'))
     app.use('/api', require('./api.routes.js'))
+    app.use('/comments', require('./comments.routes.js'))
 
 }
