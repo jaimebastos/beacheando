@@ -104,6 +104,11 @@ margin-top: 10px;
   margin-top: 30px;
   margin-left: 80%;
   border-bottom: 2px solid #0091ff;
+  padding-bottom: 0
+}
+
+.weather-info p {
+  padding-bottom: 0;
 }
 
 
@@ -162,4 +167,13 @@ footer{
 }
 .btn-comment{
   margin-top: 20px;
+}
+
+.list{
+  list-style: none;
+  margin-left: 4px;
+  
+}
+.comment-name{
+  margin-bottom: 0;
 }
