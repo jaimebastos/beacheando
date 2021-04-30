@@ -42,7 +42,7 @@ router.get('/info/:id', isLoggedIn, (req, res) => {
 
     Beach
         .findById(id)
-        .populate('comments')//
+        .populate('comments')
         .then(selectedBeach => {
             const location = selectedBeach.location.coordinates
             const lat = location[0]
@@ -79,8 +79,9 @@ router.post('/crear', isLoggedIn, checkRoles('ADMIN'), CDNupload.single('image')
     Beach
         .create({ name, description, city, country, caption, image: path, location })
         .then((createdBeach) => {
-            console.log(createdBeach)
-            res.redirect('/')})
+            
+            res.redirect(`/beach/info/${createdBeach._id}`)
+        })
         .catch(err => console.log('-----------------', err))
 })
 

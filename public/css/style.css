@@ -94,7 +94,11 @@ h6 {
 .weather {
   margin-top: 30px;
   margin-left: 80%;
-  border-bottom: 2px solid #0091ff; }
+  border-bottom: 2px solid #0091ff;
+  padding-bottom: 0; }
+
+.weather-info p {
+  padding-bottom: 0; }
 
 .weather figure {
   text-transform: capitalize;
@@ -145,5 +149,12 @@ footer {
 
 .btn-comment {
   margin-top: 20px; }
+
+.list {
+  list-style: none;
+  margin-left: 4px; }
+
+.comment-name {
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */

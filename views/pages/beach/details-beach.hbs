@@ -14,15 +14,12 @@
         </div>
         <div class="col">
             {{#with selectedBeach}}
-            <h6><img class="palmera" src="/img/palmera.png" alt="palmera">{{name}}</h6>
+            <h6> {{name}}</h6>
             <img class="info-img" src="{{image}}" alt="{{name}}">
             <p class="caption"><img src="/img/dedo.png" class="dedo" alt="dedo">{{caption}}</p>
             <p class="caption"> <img src="/img/chincheta.png" class="chincheta" alt="ubicacion">{{city}}, {{country}}
             </p>
             <p>{{description}}</p>
-            <div>
-                <p>{{comments}}</p>
-            </div>
             <input id="id" hidden value={{id}}>
             <input name="longitude" hidden value={{longitude}}>
             <input name="latitude" hidden value={{latitude}}>
@@ -39,16 +36,18 @@
         </div>
         <div class="col-md-4">
             <div class="row">
+                
                 {{#each selectedBeach.comments}}
-                <ul>
-                    <li>{{name}}</li>
-                    <li>{{text}}</li>
-                </ul>
+                <div class="list">
+                    <p class="comment-name"><strong>{{name}}</strong></p>
+                    <p>{{text}}</p>
+                    <hr>
+                </div>
                 {{/each}}
             </div>
 
             <divs>
-                <form action="/comments" method="POST">
+                <form action="/comments/{{selectedBeach.id}}" method="POST">
                     <div>
                         <label for="name" class="form-label"></label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre">
